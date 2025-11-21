@@ -1,0 +1,32 @@
+version: "3.9"
+
+services:
+  mqtt:
+    image: eclipse-mosquitto
+    container_name: mosquitto
+    restart: unless-stopped
+    volumes:
+      - ./mosquitto.conf:/mosquitto/config/mosquitto.conf
+    ports:
+      - "1883:1883"
+
+  db:
+    image: postgres:15
+    container_name: aura_db
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: aura
+      POSTGRES_PASSWORD: aura123
+      POSTGRES_DB: aura
+    ports:
+      - "5432:5432"
+
+  backend:
+    build: ../backend
+    container_name: aura_backend
+    restart: unless-stopped
+    depends_on:
+      - db
+      - mqtt
+    ports:
+      - "8000:8000"

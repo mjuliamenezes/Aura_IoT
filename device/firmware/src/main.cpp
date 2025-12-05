@@ -8,9 +8,9 @@
 #include <PubSubClient.h>
 
 // ===== CONFIGURAÇÕES =====
-const char* ssid = "CLARO_2G2500B5";
-const char* password = "AF2500B5";
-const char* mqtt_server = "192.168.0.76"; 
+const char* ssid = "";
+const char* password = "";
+const char* mqtt_server = ""; 
 const uint16_t mqtt_port = 1883;
 const char* mqtt_topic = "parkinson/mpu6050";
 const unsigned long publishIntervalMs = 500; // 2 leituras/segundo
